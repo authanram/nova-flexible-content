@@ -5,12 +5,18 @@
                  class="z-20 absolute rounded-lg shadow-lg max-w-full top-full mt-3 pin-b max-h-search overflow-y-auto border border-gray-100 dark:border-gray-700"
             >
                 <div>
-                    <ul class="list-reset">
+                    <ul
+                        @focusout="isLayoutsDropdownOpen = false"
+                        @keydown.esc="isLayoutsDropdownOpen = false"
+                        ref="groups"
+                        class="list-reset"
+                        tabindex="-1"
+                    >
                         <li v-for="layout in filteredLayouts" class="border-b border-gray-100 dark:border-gray-700" :key="'add-'+layout.name">
                             <a
                                 :dusk="'add-' + layout.name"
                                 @click="addGroup(layout)"
-                                class="cursor-pointer flex items-center hover:bg-gray-50 dark:hover:bg-gray-900 block py-2 px-3 no-underline font-normal bg-white dark:bg-gray-800">
+                                class="cursor-pointer flex items-center hover:bg-gray-50 dark:hover:bg-gray-900 block py-2 px-3 hover:no-underline font-normal bg-white dark:bg-gray-800">
                                 <div><p class="text-90">{{ layout.title }}</p></div>
                             </a>
                         </li>
@@ -68,6 +74,8 @@
                 }
 
                 this.isLayoutsDropdownOpen = !this.isLayoutsDropdownOpen;
+
+                this.$nextTick(() => this.$refs.groups.focus());
             },
 
             /**

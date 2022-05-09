@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import BehavesAsPanel from '../../../vendor/laravel/nova/resources/js/mixins/BehavesAsPanel.js';
+import BehavesAsPanel from 'laravel-nova/src/mixins/BehavesAsPanel.js';
 
 export default {
     mixins: [BehavesAsPanel],
